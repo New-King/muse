@@ -20,5 +20,20 @@
 
 ```bash
 pnpm install
+cp apps/web/.env.local.example apps/web/.env.local   # Supabase 配置
 pnpm dev
+```
+
+| 进程 | 端口 | 职责 |
+|------|------|------|
+| `apps/web` | 3000 | 工作区界面 |
+| `apps/server` | 3001 | HTTP API（`/health`） |
+
+## 结构
+
+```
+apps/web        前端
+apps/server     后端
+packages/shared 共用类型与 WS 协议
+docs            计划、设计规范、里程碑笔记
 ```
