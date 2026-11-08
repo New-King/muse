@@ -4,6 +4,8 @@
 
 代码从零实现；产品形态受 [Loomic](https://github.com/fancyboi999/Loomic) 启发，未复用其源码。
 
+![工作区](docs/preview.png)
+
 ## 状态
 
 早期搭建中，路线见 [`docs/PLAN.md`](docs/PLAN.md)，视觉规范见 [`docs/DESIGN.md`](docs/DESIGN.md)。
