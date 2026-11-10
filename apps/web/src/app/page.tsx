@@ -3,7 +3,7 @@ import { LoginForm } from "@/components/login-form";
 
 export default function Home() {
   return (
-    <div className="relative min-h-dvh overflow-hidden bg-[#f7f6f2]">
+    <div className="relative min-h-dvh overflow-hidden bg-canvas">
       <HazeCanvas />
 
       <div className="relative z-10 flex min-h-dvh flex-col">
@@ -28,11 +28,10 @@ export default function Home() {
             <p className="mt-8 max-w-[330px] text-[13.5px] leading-[1.95] text-muted">
               图像、视频、版式，在同一张画布上完成。
             </p>
-
           </div>
 
           <div className="w-full">
-            <div className="rounded-2xl border border-white/70 bg-white/85 p-7 shadow-[0_1px_2px_rgba(35,29,23,0.04),0_24px_60px_-24px_rgba(35,29,23,0.16)] backdrop-blur-md lg:p-8">
+            <div className="rounded-2xl border border-line bg-surface p-7 shadow-[0_22px_54px_-36px_rgba(24,24,27,0.28)] lg:p-8">
               <h2 className="text-[17px] font-medium tracking-tight text-ink">登录</h2>
               <p className="mt-1 mb-7 text-[12.5px] text-muted">使用你的账号进入工作台。</p>
 
