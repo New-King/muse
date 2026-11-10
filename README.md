@@ -4,7 +4,7 @@
 
 ![首页](docs/preview-landing.png)
 
-页面：`/` 首页 · `/login` 登录 · `/app` 工作台（未登录自动跳转）
+页面：`/` 首页（左侧介绍，右侧登录）· `/app` 工作台（未登录跳回首页）· `/login` 旧链接重定向到首页
 
 ## 状态
 
@@ -12,11 +12,11 @@
 
 ## 技术栈
 
-- 前端：Next.js (App Router) · React · Tailwind CSS · shadcn/ui · Excalidraw
-- 后端：Fastify · WebSocket
-- 数据：Supabase (Postgres · Auth · Storage)
-- AI：OpenAI SDK + 自建 Agent loop
-- 工程：pnpm workspace · Turborepo · Vitest · Biome
+- 前端：Next.js 15 (App Router) · React 19 · Tailwind CSS 4 · Excalidraw · react-markdown
+- 后端：Fastify 5（WebSocket 待接）
+- 数据：暂时是服务端内存，迁移与 Supabase 客户端已就位
+- AI：直接调 OpenAI 兼容接口（DeepSeek），自建 prompt 与上下文拼接
+- 工程：pnpm workspace · Turborepo · TypeScript · Biome
 
 ## 开发
 

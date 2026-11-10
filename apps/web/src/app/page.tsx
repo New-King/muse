@@ -1,103 +1,77 @@
-import Link from "next/link";
+import { LoginForm } from "@/components/login-form";
 
-const features = [
-  {
-    title: "说清楚，就有方案",
-    body: "描述画面、尺寸和气质，AI 给出配色、构图、字体的具体建议，不是泛泛而谈。",
-  },
-  {
-    title: "画布和对话在同一屏",
-    body: "不用在工具之间来回切。左边画，右边说，改完立刻看到结果。",
-  },
-  {
-    title: "一切都是可编辑的",
-    body: "画布上的每个元素都能拖动、改色、再组合，AI 给的是起点，不是终点。",
-  },
+const steps = [
+  ["01", "描述", "说清楚画面、尺寸和气质"],
+  ["02", "成稿", "AI 给出配色、构图与字体方案"],
+  ["03", "修改", "在画布上继续拖动、改色、重组"],
 ];
 
 export default function Home() {
   return (
-    <div className="min-h-dvh bg-canvas">
-      <header className="mx-auto flex h-16 max-w-[1080px] items-center justify-between px-6">
-        <div className="flex items-center gap-2">
+    <div className="min-h-dvh bg-canvas lg:grid lg:grid-cols-[1fr_460px]">
+      <div className="flex flex-col border-line lg:min-h-dvh lg:border-r">
+        <header className="flex h-16 shrink-0 items-center gap-2 px-6 lg:px-12">
           <span className="grid size-[22px] place-items-center rounded-[7px] bg-ink text-[11px] font-semibold text-canvas">
             m
           </span>
           <span className="text-[13px] font-medium tracking-tight">mylovart</span>
-        </div>
-        <Link
-          href="/login"
-          className="rounded-lg px-3 py-1.5 text-[13px] text-muted transition-colors hover:bg-surface hover:text-ink"
-        >
-          登录
-        </Link>
-      </header>
+        </header>
 
-      <main className="mx-auto max-w-[1080px] px-6">
-        <section className="grid gap-12 pb-20 pt-10 md:grid-cols-[1fr_1fr] md:items-center md:pt-16">
-          <div>
-            <p className="text-[11px] tracking-[0.14em] text-faint">AI 设计画布</p>
-            <h1 className="mt-4 text-[34px] font-medium leading-[1.25] tracking-[-0.02em] md:text-[40px]">
-              把想法说出来，
-              <br />
-              画布自己长出来。
-            </h1>
-            <p className="mt-5 max-w-[420px] text-[14px] leading-[1.8] text-muted">
-              对话在右，画布在左。你描述想要的画面，AI 给出可执行的方案，最后落成一张可以继续修改的画布。
-            </p>
-            <div className="mt-8 flex items-center gap-3">
-              <Link
-                href="/login"
-                className="inline-flex h-9 items-center rounded-lg bg-accent px-4 text-[13px] font-medium text-white transition-colors hover:bg-accent/90"
-              >
-                进入工作台
-              </Link>
-              <a
-                href="#how"
-                className="inline-flex h-9 items-center rounded-lg px-4 text-[13px] text-muted transition-colors hover:bg-surface hover:text-ink"
-              >
-                它怎么工作
-              </a>
-            </div>
-          </div>
+        <div className="flex flex-1 flex-col justify-center px-6 py-12 lg:px-12">
+          <p className="text-[11px] tracking-[0.14em] text-faint">AI 设计画布</p>
+          <h1 className="mt-4 max-w-[520px] text-[32px] font-medium leading-[1.28] tracking-[-0.02em] lg:text-[40px]">
+            把想法说出来，
+            <br />
+            画布自己长出来。
+          </h1>
+          <p className="mt-5 max-w-[400px] text-[14px] leading-[1.8] text-muted">
+            对话在右，画布在左。你描述想要的画面，AI 给出可执行的方案，最后落成一张能继续修改的画布。
+          </p>
 
-          <div className="relative overflow-hidden rounded-2xl border border-line bg-surface p-4">
-            <div className="grid-dots flex aspect-[4/3] items-center justify-center rounded-xl border border-line">
-              <div className="w-[150px] rounded-md bg-[#f2e8dc] p-3 shadow-[0_1px_2px_rgba(0,0,0,0.05)]">
-                <div className="h-[3px] w-8 rounded-full bg-[#c8622f]" />
-                <p className="mt-3 text-[13px] font-medium leading-tight tracking-tight text-[#3a2e28]">
+          <div className="relative mt-10 hidden h-[260px] w-full max-w-[460px] overflow-hidden rounded-xl border border-line bg-surface lg:block">
+            <div className="grid-dots h-full w-full p-5">
+              <div className="w-[132px] rounded-md bg-[#f2e8dc] p-3 shadow-[0_1px_2px_rgba(0,0,0,0.05)]">
+                <div className="h-[3px] w-7 rounded-full bg-[#c8622f]" />
+                <p className="mt-2.5 text-[12px] font-medium leading-tight tracking-tight text-[#3a2e28]">
                   秋日
                   <br />
                   市集
                 </p>
-                <div className="mt-4 h-10 w-full rounded-sm bg-[#c8622f]" />
-                <p className="mt-2 font-mono text-[7px] tracking-wider text-[#3a2e28]/60">
+                <div className="mt-3 h-9 w-full rounded-sm bg-[#c8622f]" />
+                <p className="mt-1.5 font-mono text-[6.5px] tracking-wider text-[#3a2e28]/60">
                   10.18 — 10.20
                 </p>
               </div>
             </div>
-            <div className="absolute bottom-6 right-6 max-w-[190px] rounded-xl border border-line bg-surface px-3 py-2 text-[11.5px] leading-relaxed shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
+            <div className="absolute bottom-5 right-5 max-w-[180px] rounded-lg border border-line bg-surface px-3 py-2 text-[11px] leading-relaxed shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
               做一张秋季市集海报，暖色，留白多一点。
             </div>
           </div>
-        </section>
+        </div>
 
-        <section id="how" className="grid gap-px border-t border-line pb-24 pt-10 md:grid-cols-3">
-          {features.map((f) => (
-            <div key={f.title} className="px-0 py-6 md:px-8 md:first:pl-0 md:last:pr-0">
-              <h2 className="text-[13px] font-medium tracking-tight">{f.title}</h2>
-              <p className="mt-2 text-[13px] leading-[1.75] text-muted">{f.body}</p>
+        <footer className="hidden shrink-0 flex-wrap gap-x-10 gap-y-3 px-6 pb-10 lg:flex lg:px-12">
+          {steps.map(([no, title, body]) => (
+            <div key={no} className="flex items-baseline gap-2">
+              <span className="font-mono text-[10px] text-faint">{no}</span>
+              <div>
+                <p className="text-[12px] font-medium tracking-tight">{title}</p>
+                <p className="mt-0.5 text-[11px] text-muted">{body}</p>
+              </div>
             </div>
           ))}
-        </section>
-      </main>
+        </footer>
+      </div>
 
-      <footer className="mx-auto flex max-w-[1080px] items-center justify-between border-t border-line px-6 py-6 text-[11px] text-faint">
-        <span>mylovart</span>
-        <Link href="/login" className="transition-colors hover:text-ink">
-          登录
-        </Link>
-      </footer>
+      <aside className="flex flex-col justify-center bg-surface px-6 py-12 lg:min-h-dvh lg:px-12 lg:py-16">
+        <div className="mx-auto w-full max-w-[300px]">
+          <h2 className="text-[19px] font-medium tracking-tight">登录</h2>
+          <p className="mt-1.5 mb-8 text-[13px] text-muted">使用你的账号进入工作台。</p>
+          <LoginForm />
+          <p className="mt-6 text-[12px] leading-relaxed text-faint">
+            目前未开放注册，仅限已有账号登录。
+          </p>
+        </div>
+      </aside>
     </div>
   );
 }
