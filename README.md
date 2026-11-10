@@ -2,8 +2,6 @@
 
 **AI 设计画布。** 左边画布，右边对话。用自然语言描述，AI 生成图像并直接落到画布上。
 
-代码从零实现；产品形态受 [Loomic](https://github.com/fancyboi999/Loomic) 启发，未复用其源码。
-
 ![工作区](docs/preview.png)
 
 ## 状态
