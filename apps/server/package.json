@@ -10,7 +10,9 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
+    "@fastify/cors": "^10.0.2",
     "@my-lovart/shared": "workspace:*",
+    "@supabase/supabase-js": "^2.47.10",
     "fastify": "^5.2.1"
   },
   "devDependencies": {
