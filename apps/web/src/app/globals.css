@@ -202,6 +202,11 @@
     0 40px 90px -30px rgba(35, 29, 23, 0.18);
 }
 
+.canvas-dots {
+  background-image: radial-gradient(circle, #dcd8cd 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
 @utility grid-dots {
   background-image: radial-gradient(circle, #dddcd6 1px, transparent 1px);
   background-size: 24px 24px;
