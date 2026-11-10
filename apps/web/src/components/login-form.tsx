@@ -26,7 +26,7 @@ export function LoginForm() {
   }
 
   return (
-    <form onSubmit={submit} className="w-full max-w-[300px] space-y-4">
+    <form onSubmit={submit} className="w-full space-y-5">
       <div>
         <label htmlFor="email" className="mb-1.5 block text-[12px] text-muted">
           邮箱

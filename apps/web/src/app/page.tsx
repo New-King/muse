@@ -1,25 +1,24 @@
 import { HazeCanvas } from "@/components/haze-canvas";
 import { LoginForm } from "@/components/login-form";
 
+const mediums = ["图像", "视频", "版式"];
+
 export default function Home() {
   return (
     <div className="relative min-h-dvh overflow-hidden bg-canvas">
       <HazeCanvas />
 
-      <div className="relative z-10 flex min-h-dvh flex-col">
-        <header className="flex h-20 shrink-0 items-center justify-between px-7 lg:px-14">
+      <div className="relative z-10 grid min-h-dvh gap-12 px-7 pb-24 pt-10 lg:grid-cols-[1fr_460px] lg:items-stretch lg:gap-16 lg:px-14 lg:pb-24 lg:pt-14">
+        <div className="flex flex-col lg:h-full">
           <div className="flex items-center gap-2.5">
-            <span className="grid size-[24px] place-items-center rounded-[7px] bg-ink text-[11px] font-semibold text-white">
+            <span className="grid size-[28px] place-items-center rounded-[8px] bg-ink text-[12px] font-semibold text-white">
               m
             </span>
-            <span className="text-[14px] font-medium tracking-[-0.01em] text-ink">mylovart</span>
+            <span className="text-[17px] font-medium tracking-[-0.02em] text-ink">mylovart</span>
           </div>
-          <span className="font-mono text-[9px] tracking-[0.2em] text-faint">BETA</span>
-        </header>
 
-        <main className="mx-auto grid w-full max-w-[1160px] flex-1 items-center gap-14 px-7 lg:grid-cols-[1fr_348px] lg:gap-20 lg:px-14">
-          <div>
-            <h1 className="max-w-[560px] text-[clamp(40px,5.1vw,72px)] font-light leading-[1.12] tracking-[-0.035em] text-ink">
+          <div className="flex flex-1 flex-col justify-center py-16 lg:py-0">
+            <h1 className="max-w-[560px] text-[clamp(40px,5.2vw,76px)] font-light leading-[1.1] tracking-[-0.04em] text-ink">
               把想法，
               <br />
               做成作品。
@@ -28,28 +27,41 @@ export default function Home() {
             <p className="mt-8 max-w-[330px] text-[13.5px] leading-[1.95] text-muted">
               图像、视频、版式，在同一张画布上完成。
             </p>
+
+            <div className="mt-14 flex items-center gap-5">
+              {mediums.map((m) => (
+                <span key={m} className="font-mono text-[9px] tracking-[0.18em] text-faint">
+                  {m}
+                </span>
+              ))}
+            </div>
           </div>
+        </div>
 
-          <div className="w-full">
-            <div className="rounded-2xl border border-line bg-surface p-7 shadow-[0_22px_54px_-36px_rgba(24,24,27,0.28)] lg:p-8">
-              <h2 className="text-[17px] font-medium tracking-tight text-ink">登录</h2>
-              <p className="mt-1 mb-7 text-[12.5px] text-muted">使用你的账号进入工作台。</p>
+        <div className="flex w-full items-center">
+          <div className="w-full rounded-2xl border border-line bg-surface p-8 shadow-[0_24px_70px_-34px_rgba(24,24,27,0.26)] lg:p-10">
+            <div className="flex items-baseline justify-between">
+              <h2 className="text-[20px] font-medium tracking-tight text-ink">登录</h2>
+              <span className="font-mono text-[9px] tracking-[0.18em] text-faint">SIGN IN</span>
+            </div>
+            <p className="mt-2 mb-8 text-[13px] text-muted">使用你的账号进入工作台。</p>
 
-              <LoginForm />
+            <LoginForm />
 
-              <p className="mt-6 text-[11px] leading-relaxed text-faint">
+            <div className="mt-8 border-t border-line pt-6">
+              <p className="text-[11.5px] leading-relaxed text-faint">
                 目前未开放注册，仅限已有账号登录。
               </p>
             </div>
           </div>
-        </main>
+        </div>
+      </div>
 
-        <footer className="flex shrink-0 items-center justify-between px-7 pb-8 lg:px-14 lg:pb-10">
-          <span className="font-mono text-[9px] tracking-[0.2em] text-faint">
-            MYLOVART — AI CREATIVE CANVAS
-          </span>
-          <span className="font-mono text-[9px] tracking-[0.2em] text-faint">© 2026</span>
-        </footer>
+      <div className="absolute inset-x-0 bottom-0 z-10 flex items-center justify-between px-7 pb-8 lg:px-14 lg:pb-10">
+        <span className="font-mono text-[9px] tracking-[0.2em] text-faint">
+          MYLOVART — AI CREATIVE CANVAS
+        </span>
+        <span className="font-mono text-[9px] tracking-[0.2em] text-faint">© 2026</span>
       </div>
     </div>
   );
