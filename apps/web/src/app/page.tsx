@@ -1,71 +1,57 @@
-import { CanvasMock } from "@/components/canvas-mock";
+import { HazeCanvas } from "@/components/haze-canvas";
 import { LoginForm } from "@/components/login-form";
-
-const mediums = ["图像", "视频", "版式"];
 
 export default function Home() {
   return (
-    <div className="min-h-dvh bg-[#f7f6f2] lg:grid lg:grid-cols-[1fr_400px]">
-      <section className="flex flex-col lg:min-h-dvh">
-        <header className="flex h-16 shrink-0 items-center justify-between px-6 lg:px-10">
+    <div className="relative min-h-dvh overflow-hidden bg-[#f7f6f2]">
+      <HazeCanvas />
+
+      <div className="relative z-10 flex min-h-dvh flex-col">
+        <header className="flex h-20 shrink-0 items-center justify-between px-7 lg:px-14">
           <div className="flex items-center gap-2.5">
             <span className="grid size-[24px] place-items-center rounded-[7px] bg-ink text-[11px] font-semibold text-white">
               m
             </span>
-            <span className="text-[14px] font-medium tracking-[-0.01em]">mylovart</span>
+            <span className="text-[14px] font-medium tracking-[-0.01em] text-ink">mylovart</span>
           </div>
-          <span className="rounded-full border border-[#e6e3da] bg-surface px-2.5 py-1 font-mono text-[9px] tracking-[0.14em] text-faint">
-            BETA
-          </span>
+          <span className="font-mono text-[9px] tracking-[0.2em] text-faint">BETA</span>
         </header>
 
-        <div className="flex flex-1 flex-col justify-center px-6 pb-10 pt-6 lg:px-10 lg:pb-14">
-          <h1 className="max-w-[560px] text-[clamp(30px,3.6vw,48px)] font-medium leading-[1.2] tracking-[-0.03em] text-ink">
-            一句话，
-            <br />
-            做图、做片、做设计。
-          </h1>
+        <main className="mx-auto grid w-full max-w-[1160px] flex-1 items-center gap-14 px-7 lg:grid-cols-[1fr_348px] lg:gap-20 lg:px-14">
+          <div>
+            <h1 className="max-w-[560px] text-[clamp(40px,5.1vw,72px)] font-light leading-[1.12] tracking-[-0.035em] text-ink">
+              把想法，
+              <br />
+              做成作品。
+            </h1>
 
-          <p className="mt-4 max-w-[430px] text-[13.5px] leading-[1.85] text-muted">
-            左边画布，右边对话。AI 生成图像、视频和版式，直接落到画布上，你接着改。
-          </p>
-
-          <div className="mt-5 flex items-center gap-2">
-            {mediums.map((m) => (
-              <span
-                key={m}
-                className="rounded-full border border-[#e3e0d7] bg-surface px-2.5 py-1 text-[11px] text-muted"
-              >
-                {m}
-              </span>
-            ))}
-          </div>
-
-          <div className="mt-8">
-            <CanvasMock />
-          </div>
-        </div>
-      </section>
-
-      <aside className="flex flex-col border-[#e6e3da] bg-surface lg:min-h-dvh lg:border-l">
-        <div className="flex flex-1 flex-col justify-center px-7 py-12 lg:px-10">
-          <div className="mx-auto w-full max-w-[300px]">
-            <h2 className="text-[20px] font-medium tracking-tight text-ink">登录</h2>
-            <p className="mt-1.5 mb-8 text-[13px] text-muted">使用你的账号进入工作台。</p>
-
-            <LoginForm />
-
-            <p className="mt-7 text-[11.5px] leading-relaxed text-faint">
-              目前未开放注册，仅限已有账号登录。
+            <p className="mt-8 max-w-[330px] text-[13.5px] leading-[1.95] text-muted">
+              图像、视频、版式，在同一张画布上完成。
             </p>
-          </div>
-        </div>
 
-        <div className="flex shrink-0 items-center justify-between border-t border-[#ece9e2] px-7 py-4 lg:px-10">
-          <span className="font-mono text-[9px] tracking-[0.14em] text-faint">MYLOVART</span>
-          <span className="font-mono text-[9px] tracking-[0.14em] text-faint">2026</span>
-        </div>
-      </aside>
+          </div>
+
+          <div className="w-full">
+            <div className="rounded-2xl border border-white/70 bg-white/85 p-7 shadow-[0_1px_2px_rgba(35,29,23,0.04),0_24px_60px_-24px_rgba(35,29,23,0.16)] backdrop-blur-md lg:p-8">
+              <h2 className="text-[17px] font-medium tracking-tight text-ink">登录</h2>
+              <p className="mt-1 mb-7 text-[12.5px] text-muted">使用你的账号进入工作台。</p>
+
+              <LoginForm />
+
+              <p className="mt-6 text-[11px] leading-relaxed text-faint">
+                目前未开放注册，仅限已有账号登录。
+              </p>
+            </div>
+          </div>
+        </main>
+
+        <footer className="flex shrink-0 items-center justify-between px-7 pb-8 lg:px-14 lg:pb-10">
+          <span className="font-mono text-[9px] tracking-[0.2em] text-faint">
+            MYLOVART — AI CREATIVE CANVAS
+          </span>
+          <span className="font-mono text-[9px] tracking-[0.2em] text-faint">© 2026</span>
+        </footer>
+      </div>
     </div>
   );
 }
