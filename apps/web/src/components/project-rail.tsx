@@ -59,7 +59,9 @@ export function ProjectRail({ projects, activeId, onSelect, onCreate }: Props) {
               }
             >
               <span className="min-w-0 flex-1 truncate">{p.name}</span>
-              <span className="text-[11px] text-faint">{relativeTime(p.updatedAt)}</span>
+              <span className="text-[11px] text-faint">
+                {p.isDraft ? "未保存" : relativeTime(p.updatedAt)}
+              </span>
             </button>
           ))
         )}

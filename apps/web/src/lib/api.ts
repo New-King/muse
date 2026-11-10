@@ -3,6 +3,8 @@ export type Project = {
   name: string;
   createdAt: string;
   updatedAt: string;
+  /** 只存在于前端：还没落库的草稿 */
+  isDraft?: boolean;
 };
 
 export type ChatMessage = {
