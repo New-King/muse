@@ -18,9 +18,10 @@ type Props = {
   activeId: string | null;
   onSelect: (id: string) => void;
   onCreate: () => void;
+  onLogout: () => void;
 };
 
-export function ProjectRail({ projects, activeId, onSelect, onCreate }: Props) {
+export function ProjectRail({ projects, activeId, onSelect, onCreate, onLogout }: Props) {
   return (
     <aside className="flex w-60 shrink-0 flex-col border-r border-line bg-canvas">
       <div className="flex h-12 items-center gap-2 px-4">
@@ -67,12 +68,16 @@ export function ProjectRail({ projects, activeId, onSelect, onCreate }: Props) {
         )}
       </nav>
 
-      <div className="flex items-center gap-2 border-t border-line px-3 py-3">
+      <button
+        type="button"
+        onClick={onLogout}
+        className="flex items-center gap-2 border-t border-line px-3 py-3 text-left transition-colors hover:bg-surface"
+      >
         <span className="grid size-6 shrink-0 place-items-center rounded-full bg-accent-soft text-[11px] font-medium text-accent">
           N
         </span>
-        <span className="truncate text-[12px] text-muted">newking@example.com</span>
-      </div>
+        <span className="min-w-0 flex-1 truncate text-[12px] text-muted">退出登录</span>
+      </button>
     </aside>
   );
 }

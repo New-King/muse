@@ -1,6 +1,8 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { clearSession } from "@/lib/session";
 import { CanvasStage } from "./canvas-stage";
 import { ChatPanel } from "./chat-panel";
 import { ProjectRail } from "./project-rail";
@@ -17,6 +19,7 @@ import {
 const DRAFT_PREFIX = "draft-";
 
 export function Workspace() {
+  const router = useRouter();
   const [projects, setProjects] = useState<Project[]>([]);
   const [draftId, setDraftId] = useState<string | null>(null);
   const [activeId, setActiveId] = useState<string | null>(null);
@@ -78,6 +81,11 @@ export function Workspace() {
     },
     [activeId],
   );
+
+  const handleLogout = () => {
+    clearSession();
+    router.push("/login");
+  };
 
   const handleCreate = () => {
     if (draftId) {
@@ -158,6 +166,7 @@ export function Workspace() {
         activeId={activeId}
         onSelect={handleSelect}
         onCreate={handleCreate}
+        onLogout={handleLogout}
       />
       <CanvasStage
         project={activeProject}
