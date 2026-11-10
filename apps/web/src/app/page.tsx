@@ -8,7 +8,7 @@ export default function Home() {
     <div className="relative min-h-dvh overflow-hidden bg-canvas">
       <HazeCanvas />
 
-      <div className="relative z-10 grid min-h-dvh gap-12 px-7 pb-24 pt-10 lg:grid-cols-[1fr_460px] lg:items-stretch lg:gap-16 lg:px-14 lg:pb-24 lg:pt-14">
+      <div className="relative z-10 mx-auto grid min-h-dvh w-full max-w-[1040px] gap-12 px-7 pb-24 pt-10 lg:grid-cols-[1fr_420px] lg:items-stretch lg:gap-10 lg:px-14 lg:pb-24 lg:pt-14">
         <div className="flex flex-col lg:h-full">
           <div className="flex items-center gap-2.5">
             <span className="grid size-[28px] place-items-center rounded-[8px] bg-ink text-[12px] font-semibold text-white">
@@ -18,7 +18,7 @@ export default function Home() {
           </div>
 
           <div className="flex flex-1 flex-col justify-center py-16 lg:py-0">
-            <h1 className="max-w-[560px] text-[clamp(40px,5.2vw,76px)] font-light leading-[1.1] tracking-[-0.04em] text-ink">
+            <h1 className="max-w-[600px] text-[clamp(40px,5.6vw,84px)] font-light leading-[1.1] tracking-[-0.04em] text-ink">
               把想法，
               <br />
               做成作品。
@@ -57,7 +57,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 z-10 flex items-center justify-between px-7 pb-8 lg:px-14 lg:pb-10">
+      <div className="absolute inset-x-0 bottom-0 z-10 mx-auto flex w-full max-w-[1040px] items-center justify-between px-7 pb-8 lg:px-14 lg:pb-10">
         <span className="font-mono text-[9px] tracking-[0.2em] text-faint">
           MYLOVART — AI CREATIVE CANVAS
         </span>

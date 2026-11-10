@@ -25,30 +25,30 @@ export function HazeCanvas() {
         </defs>
 
         <g strokeWidth="1" strokeLinecap="round" stroke="url(#in-left)" strokeOpacity="0.16">
-          <path d="M-160,1100 C80,1000 220,830 340,700" />
-          <path d="M-160,960 C80,930 230,800 340,700" />
-          <path d="M-160,800 C70,800 220,750 340,700" />
-          <path d="M-160,540 C70,620 220,665 340,700" />
-          <path d="M120,1150 C190,980 270,800 340,700" />
+          <path d="M-160,1120 C90,1040 250,880 400,760" />
+          <path d="M-160,1000 C90,970 260,860 400,760" />
+          <path d="M-160,860 C80,860 250,810 400,760" />
+          <path d="M-160,640 C80,700 250,730 400,760" />
+          <path d="M150,1160 C230,1040 320,860 400,760" />
         </g>
 
         <g strokeWidth="1" strokeLinecap="round" stroke="url(#out-right)" strokeOpacity="0.18">
-          <path d="M340,700 C640,660 960,600 1560,540" />
+          <path d="M400,760 C700,720 1000,650 1560,580" />
         </g>
 
         <g fill="#1d1d1f">
-          <circle cx="340" cy="700" r="3" opacity="0.3" />
-          <circle cx="520" cy="684" r="2.4" opacity="0.22" />
-          <circle cx="680" cy="668" r="2.4" opacity="0.2" />
-          <circle cx="840" cy="652" r="2.2" opacity="0.16" />
-          <circle cx="1000" cy="636" r="2" opacity="0.12" />
-          <circle cx="240" cy="782" r="2.2" opacity="0.16" />
-          <circle cx="150" cy="870" r="2" opacity="0.12" />
+          <circle cx="400" cy="760" r="3" opacity="0.3" />
+          <circle cx="580" cy="740" r="2.4" opacity="0.22" />
+          <circle cx="740" cy="720" r="2.4" opacity="0.2" />
+          <circle cx="900" cy="700" r="2.2" opacity="0.16" />
+          <circle cx="1060" cy="680" r="2" opacity="0.12" />
+          <circle cx="290" cy="858" r="2.2" opacity="0.16" />
+          <circle cx="200" cy="948" r="2" opacity="0.12" />
         </g>
       </svg>
 
       {/* 交点处一团柔光 */}
-      <div className="absolute left-[340px] top-[700px] h-[340px] w-[340px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/75 blur-[80px]" />
+      <div className="absolute left-[400px] top-[760px] h-[340px] w-[340px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/75 blur-[80px]" />
 
       <div
         className="absolute inset-0 opacity-[0.025] mix-blend-multiply"
