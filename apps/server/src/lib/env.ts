@@ -2,7 +2,10 @@ const required = (name: string, fallback = "") => process.env[name] ?? fallback;
 
 export const env = {
   port: Number(required("PORT", "3001")),
-  webOrigin: required("WEB_ORIGIN", "http://localhost:3000"),
+  webOrigins: required("WEB_ORIGIN", "http://localhost:3000,http://127.0.0.1:3000")
+    .split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean),
 
   supabaseUrl: required("SUPABASE_URL"),
   supabaseServiceKey: required("SUPABASE_SERVICE_ROLE_KEY"),

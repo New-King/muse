@@ -5,6 +5,19 @@ export type Project = {
   updatedAt: string;
 };
 
+export type ChatMessage = {
+  id: string;
+  role: "user" | "assistant";
+  content: string;
+  createdAt: string;
+};
+
+export type WorkspaceData = {
+  projectId: string;
+  elements: unknown[];
+  messages: ChatMessage[];
+};
+
 const base = process.env.NEXT_PUBLIC_SERVER_BASE_URL ?? "http://127.0.0.1:3001";
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
@@ -25,8 +38,17 @@ export const listProjects = () => request<Project[]>("/projects");
 export const createProject = (name: string) =>
   request<Project>("/projects", { method: "POST", body: JSON.stringify({ name }) });
 
-export const renameProject = (id: string, name: string) =>
-  request<Project>(`/projects/${id}`, { method: "PATCH", body: JSON.stringify({ name }) });
+export const getWorkspace = (projectId: string) =>
+  request<WorkspaceData>(`/workspace/${projectId}`);
 
-export const deleteProject = (id: string) =>
-  request<void>(`/projects/${id}`, { method: "DELETE" });
+export const saveCanvas = (projectId: string, elements: unknown[]) =>
+  request<void>(`/workspace/${projectId}/canvas`, {
+    method: "PUT",
+    body: JSON.stringify({ elements }),
+  });
+
+export const sendMessage = (projectId: string, text: string) =>
+  request<WorkspaceData>(`/workspace/${projectId}/messages`, {
+    method: "POST",
+    body: JSON.stringify({ text }),
+  });

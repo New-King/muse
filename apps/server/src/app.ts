@@ -3,6 +3,7 @@ import Fastify from "fastify";
 import { APP_NAME } from "@my-lovart/shared";
 import { env } from "./lib/env.js";
 import { registerProjectRoutes } from "./http/projects.js";
+import { registerWorkspaceRoutes } from "./http/workspace.js";
 import {
   createMemoryProjectsRepository,
   createSupabaseProjectsRepository,
@@ -11,7 +12,7 @@ import {
 export function buildApp() {
   const app = Fastify({ logger: true });
 
-  app.register(cors, { origin: env.webOrigin });
+  app.register(cors, { origin: env.webOrigins });
 
   app.get("/health", async () => ({
     ok: true,
@@ -28,6 +29,7 @@ export function buildApp() {
   }
 
   registerProjectRoutes(app, repo);
+  registerWorkspaceRoutes(app);
 
   return app;
 }

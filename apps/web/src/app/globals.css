@@ -40,6 +40,83 @@
   }
 }
 
+/* Excalidraw 的默认主色是紫色，改成和站点一致的墨绿 */
+.excalidraw {
+  --color-primary: #2f5d50;
+  --color-primary-darker: #274c42;
+  --color-primary-darkest: #1f3d35;
+  --color-primary-light: #edf2ef;
+  --color-primary-light-darker: #dde7e1;
+}
+
+@layer components {
+  .prose-muse > * + * {
+    margin-top: 0.7em;
+  }
+
+  .prose-muse h1,
+  .prose-muse h2,
+  .prose-muse h3 {
+    font-size: 13.5px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-top: 1.1em;
+  }
+
+  .prose-muse p {
+    margin: 0;
+  }
+
+  .prose-muse ul {
+    list-style: disc;
+    padding-left: 1.1em;
+  }
+
+  .prose-muse ol {
+    list-style: decimal;
+    padding-left: 1.1em;
+  }
+
+  .prose-muse li + li {
+    margin-top: 0.2em;
+  }
+
+  .prose-muse code {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    background: #f1f1ec;
+    padding: 1px 4px;
+    border-radius: 4px;
+  }
+
+  .prose-muse pre {
+    background: #f7f7f2;
+    padding: 10px;
+    border-radius: 8px;
+    overflow-x: auto;
+  }
+
+  .prose-muse pre code {
+    background: none;
+    padding: 0;
+  }
+
+  .prose-muse hr {
+    border: 0;
+    border-top: 1px solid var(--color-line);
+    margin: 1em 0;
+  }
+
+  .prose-muse strong {
+    font-weight: 600;
+  }
+
+  .prose-muse a {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+}
+
 @utility grid-dots {
   background-image: radial-gradient(circle, #dddcd6 1px, transparent 1px);
   background-size: 24px 24px;

@@ -1,4 +1,6 @@
-import { NewProjectButton } from "./new-project-button";
+"use client";
+
+import { Plus } from "lucide-react";
 import type { Project } from "@/lib/api";
 
 function relativeTime(iso: string) {
@@ -11,7 +13,14 @@ function relativeTime(iso: string) {
   return `${Math.floor(diff / day)} 天前`;
 }
 
-export function ProjectRail({ projects }: { projects: Project[] }) {
+type Props = {
+  projects: Project[];
+  activeId: string | null;
+  onSelect: (id: string) => void;
+  onCreate: () => void;
+};
+
+export function ProjectRail({ projects, activeId, onSelect, onCreate }: Props) {
   return (
     <aside className="flex w-60 shrink-0 flex-col border-r border-line bg-canvas">
       <div className="flex h-12 items-center gap-2 px-4">
@@ -21,7 +30,14 @@ export function ProjectRail({ projects }: { projects: Project[] }) {
         <span className="text-[13px] font-medium tracking-tight">mylovart</span>
       </div>
 
-      <NewProjectButton />
+      <button
+        type="button"
+        onClick={onCreate}
+        className="mx-3 mt-1 flex h-8 items-center gap-2 rounded-lg px-2.5 text-[13px] text-muted transition-colors hover:bg-surface hover:text-ink"
+      >
+        <Plus className="size-3.5" strokeWidth={2} />
+        新建项目
+      </button>
 
       <div className="px-4 pt-6 pb-1.5 text-[11px] tracking-[0.08em] text-faint">项目</div>
 
@@ -31,19 +47,20 @@ export function ProjectRail({ projects }: { projects: Project[] }) {
             还没有项目，点上面的「新建项目」开始。
           </p>
         ) : (
-          projects.map((p, index) => (
-            <a
+          projects.map((p) => (
+            <button
               key={p.id}
-              href="#"
+              type="button"
+              onClick={() => onSelect(p.id)}
               className={
-                index === 0
-                  ? "mb-0.5 flex items-center gap-2 rounded-lg border border-line bg-surface px-2 py-[7px] text-[13px]"
-                  : "mb-0.5 flex items-center gap-2 rounded-lg px-2 py-[7px] text-[13px] text-muted transition-colors hover:bg-surface/70 hover:text-ink"
+                p.id === activeId
+                  ? "mb-0.5 flex w-full items-center gap-2 rounded-lg border border-line bg-surface px-2 py-[7px] text-left text-[13px]"
+                  : "mb-0.5 flex w-full items-center gap-2 rounded-lg px-2 py-[7px] text-left text-[13px] text-muted transition-colors hover:bg-surface/70 hover:text-ink"
               }
             >
               <span className="min-w-0 flex-1 truncate">{p.name}</span>
               <span className="text-[11px] text-faint">{relativeTime(p.updatedAt)}</span>
-            </a>
+            </button>
           ))
         )}
       </nav>
