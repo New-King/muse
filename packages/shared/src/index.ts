@@ -1,4 +1,4 @@
-export const APP_NAME = "Muse";
+export const APP_NAME = "My Lovart";
 
 /** 服务端 → 客户端的事件，WebSocket 复用同一套定义。 */
 export type ServerEvent =

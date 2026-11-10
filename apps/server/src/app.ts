@@ -1,5 +1,5 @@
 import Fastify from "fastify";
-import { APP_NAME } from "@muse/shared";
+import { APP_NAME } from "@my-lovart/shared";
 
 export function buildApp() {
   const app = Fastify({ logger: true });

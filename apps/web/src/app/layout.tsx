@@ -4,7 +4,7 @@ import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Muse",
+  title: "My Lovart",
   description: "AI 设计画布",
 };
 

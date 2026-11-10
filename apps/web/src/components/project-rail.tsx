@@ -11,9 +11,9 @@ export function ProjectRail() {
     <aside className="flex w-60 shrink-0 flex-col border-r border-line bg-canvas">
       <div className="flex h-12 items-center gap-2 px-4">
         <span className="grid size-[22px] place-items-center rounded-[7px] bg-ink text-[11px] font-semibold text-canvas">
-          M
+          m
         </span>
-        <span className="text-[13px] font-medium tracking-tight">Muse</span>
+        <span className="text-[13px] font-medium tracking-tight">mylovart</span>
       </div>
 
       <button

@@ -20,7 +20,7 @@ importers:
 
   apps/server:
     dependencies:
-      '@muse/shared':
+      '@my-lovart/shared':
         specifier: workspace:*
         version: link:../../packages/shared
       fastify:

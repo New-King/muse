@@ -1,5 +1,5 @@
 {
-  "name": "@muse/server",
+  "name": "@my-lovart/server",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -10,7 +10,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@muse/shared": "workspace:*",
+    "@my-lovart/shared": "workspace:*",
     "fastify": "^5.2.1"
   },
   "devDependencies": {
