@@ -6,7 +6,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "My Lovart",
-  description: "AI 设计画布",
+  description: "AI 创作画布：在同一个画布上做图、做片、做设计",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

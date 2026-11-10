@@ -117,10 +117,37 @@ export function CanvasMock() {
           </span>
         </div>
 
+        {/* 视频片段 */}
+        <div className="absolute right-[6%] top-[15%] hidden w-[210px] sm:block">
+          <div className="relative aspect-video w-full overflow-hidden rounded-[4px] bg-[#241f1a]">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_28%_38%,rgba(200,98,47,0.55),transparent_58%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_70%,rgba(47,93,80,0.42),transparent_55%)]" />
+
+            <div className="absolute inset-0 grid place-items-center">
+              <span className="grid size-6 place-items-center rounded-full bg-white/90 shadow-[0_2px_8px_rgba(0,0,0,0.25)]">
+                <svg width="7" height="8" viewBox="0 0 7 8" fill="none">
+                  <path d="M0.5 0.5L6.5 4L0.5 7.5V0.5Z" fill="#231d17" />
+                </svg>
+              </span>
+            </div>
+
+            <span className="absolute bottom-1.5 right-1.5 rounded-[2px] bg-black/55 px-1 py-px font-mono text-[6.5px] text-white">
+              00:06
+            </span>
+
+            <div className="absolute inset-x-2 bottom-1 h-[2px] rounded-full bg-white/25">
+              <div className="h-full w-[38%] rounded-full bg-[#c8622f]" />
+            </div>
+          </div>
+          <span className="mt-1.5 block font-mono text-[7px] tracking-[0.12em] text-faint">
+            VIDEO · 6s / 1080P
+          </span>
+        </div>
+
         {/* 对话气泡 */}
         <div className="absolute bottom-[11%] right-[4%] w-[42%] max-w-[224px] rounded-lg border border-[#e6e3da] bg-surface px-2.5 py-2 shadow-[0_3px_12px_rgba(35,29,23,0.06)]">
           <p className="text-[10px] leading-relaxed text-ink">
-            做一张秋季市集海报，暖色，留白多一点。
+            做一张秋季市集海报，再来一段 6 秒短片。
           </p>
           <div className="mt-1.5 flex items-center justify-between">
             <span className="font-mono text-[7px] tracking-[0.1em] text-faint">DEEPSEEK</span>

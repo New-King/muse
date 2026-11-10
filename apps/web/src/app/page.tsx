@@ -1,6 +1,8 @@
 import { CanvasMock } from "@/components/canvas-mock";
 import { LoginForm } from "@/components/login-form";
 
+const mediums = ["图像", "视频", "版式"];
+
 export default function Home() {
   return (
     <div className="min-h-dvh bg-[#f7f6f2] lg:grid lg:grid-cols-[1fr_400px]">
@@ -19,14 +21,25 @@ export default function Home() {
 
         <div className="flex flex-1 flex-col justify-center px-6 pb-10 pt-6 lg:px-10 lg:pb-14">
           <h1 className="max-w-[560px] text-[clamp(30px,3.6vw,48px)] font-medium leading-[1.2] tracking-[-0.03em] text-ink">
-            说一句话，
+            一句话，
             <br />
-            AI 在你的画布上作画。
+            做图、做片、做设计。
           </h1>
 
-          <p className="mt-4 max-w-[420px] text-[13.5px] leading-[1.85] text-muted">
-            左边画布，右边对话。描述你想要的画面，AI 生成图形、落到位、还能继续改。
+          <p className="mt-4 max-w-[430px] text-[13.5px] leading-[1.85] text-muted">
+            左边画布，右边对话。AI 生成图像、视频和版式，直接落到画布上，你接着改。
           </p>
+
+          <div className="mt-5 flex items-center gap-2">
+            {mediums.map((m) => (
+              <span
+                key={m}
+                className="rounded-full border border-[#e3e0d7] bg-surface px-2.5 py-1 text-[11px] text-muted"
+              >
+                {m}
+              </span>
+            ))}
+          </div>
 
           <div className="mt-8">
             <CanvasMock />
