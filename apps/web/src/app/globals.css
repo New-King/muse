@@ -220,6 +220,218 @@
   background-size: 20px 20px;
 }
 
+/* 左缘流程刻度 */
+.process-rail {
+  position: relative;
+  width: 132px;
+  height: 440px;
+}
+
+.pr-track,
+.pr-fill {
+  position: absolute;
+  left: 5px;
+  top: 0;
+  width: 1px;
+  height: 100%;
+}
+
+.pr-track {
+  background: rgb(29 29 31 / 0.12);
+}
+
+.pr-fill {
+  background: rgb(29 29 31 / 0.5);
+  transform-origin: top;
+  transform: scaleY(0);
+  animation: pr-fill 9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.pr-node {
+  position: absolute;
+  left: 0;
+  width: 11px;
+  height: 11px;
+  margin-top: -5px;
+  border-radius: 9999px;
+  border: 1px solid rgb(29 29 31 / 0.28);
+  background: var(--color-canvas);
+}
+
+.pr-node-1 {
+  top: 0;
+  animation: pr-node-1 9s linear infinite;
+}
+.pr-node-2 {
+  top: 50%;
+  animation: pr-node-2 9s linear infinite;
+}
+.pr-node-3 {
+  top: 100%;
+  animation: pr-node-3 9s linear infinite;
+}
+
+.pr-label {
+  position: absolute;
+  left: 22px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  color: rgb(29 29 31 / 0.22);
+}
+
+.pr-label-1 {
+  top: 0;
+  margin-top: -6px;
+  animation: pr-label-on 9s linear infinite;
+}
+.pr-label-2 {
+  top: 50%;
+  margin-top: -6px;
+  animation: pr-label-mid 9s linear infinite;
+}
+.pr-label-3 {
+  top: 100%;
+  margin-top: -6px;
+  animation: pr-label-end 9s linear infinite;
+}
+
+.pr-cursor {
+  position: absolute;
+  left: 1px;
+  top: 0;
+  width: 9px;
+  height: 9px;
+  margin-top: -4px;
+  border-radius: 9999px;
+  background: #1d1d1f;
+  animation: pr-move 9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes pr-fill {
+  0%,
+  6% {
+    transform: scaleY(0);
+  }
+  74%,
+  90% {
+    transform: scaleY(1);
+  }
+  98%,
+  100% {
+    transform: scaleY(0);
+  }
+}
+
+@keyframes pr-move {
+  0%,
+  6% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  74%,
+  90% {
+    transform: translateY(440px);
+    opacity: 1;
+  }
+  98%,
+  100% {
+    transform: translateY(440px);
+    opacity: 0;
+  }
+}
+
+@keyframes pr-node-1 {
+  0%,
+  10% {
+    background: var(--color-canvas);
+  }
+  12%,
+  100% {
+    background: #1d1d1f;
+    border-color: #1d1d1f;
+  }
+}
+
+@keyframes pr-node-2 {
+  0%,
+  42% {
+    background: var(--color-canvas);
+    border-color: rgb(29 29 31 / 0.28);
+  }
+  44%,
+  100% {
+    background: #1d1d1f;
+    border-color: #1d1d1f;
+  }
+}
+
+@keyframes pr-node-3 {
+  0%,
+  74% {
+    background: var(--color-canvas);
+    border-color: rgb(29 29 31 / 0.28);
+  }
+  76%,
+  100% {
+    background: #1d1d1f;
+    border-color: #1d1d1f;
+  }
+}
+
+@keyframes pr-label-on {
+  0%,
+  11% {
+    color: rgb(29 29 31 / 0.22);
+  }
+  14%,
+  100% {
+    color: rgb(29 29 31 / 0.55);
+  }
+}
+
+@keyframes pr-label-mid {
+  0%,
+  43% {
+    color: rgb(29 29 31 / 0.22);
+  }
+  46%,
+  100% {
+    color: rgb(29 29 31 / 0.55);
+  }
+}
+
+@keyframes pr-label-end {
+  0%,
+  75% {
+    color: rgb(29 29 31 / 0.22);
+  }
+  78%,
+  100% {
+    color: rgb(29 29 31 / 0.55);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pr-fill,
+  .pr-cursor,
+  .pr-node,
+  .pr-label {
+    animation: none;
+  }
+
+  .pr-fill {
+    transform: scaleY(1);
+  }
+
+  .pr-cursor {
+    opacity: 0;
+  }
+}
+
 @utility grid-dots {
   background-image: radial-gradient(circle, #dddcd6 1px, transparent 1px);
   background-size: 24px 24px;

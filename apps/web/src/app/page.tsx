@@ -1,4 +1,5 @@
 import { HazeCanvas } from "@/components/haze-canvas";
+import { ProcessRail } from "@/components/process-rail";
 import { LoginForm } from "@/components/login-form";
 
 const mediums = ["图像", "视频", "版式"];
@@ -7,6 +8,9 @@ export default function Home() {
   return (
     <div className="relative min-h-dvh overflow-hidden bg-canvas">
       <HazeCanvas />
+      <div className="absolute left-[76px] top-1/2 hidden -translate-y-1/2 xl:block">
+        <ProcessRail />
+      </div>
 
       <div className="relative z-10 mx-auto grid min-h-dvh w-full max-w-[1040px] gap-12 px-7 pb-24 pt-10 lg:grid-cols-[1fr_420px] lg:items-stretch lg:gap-10 lg:px-14 lg:pb-24 lg:pt-14">
         <div className="flex flex-col lg:h-full">
