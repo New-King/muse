@@ -19,10 +19,13 @@ const ITEMS = [
 type Point = { x: number; y: number };
 
 function buildPath(nodes: Point[]) {
-  const points: Point[] = [{ x: nodes[0].x, y: 0 }, nodes[0]];
+  const first = nodes[0];
+  if (!first) return "";
+  const points: Point[] = [{ x: first.x, y: 0 }, first];
   for (let i = 1; i < nodes.length; i++) {
     const from = nodes[i - 1];
     const to = nodes[i];
+    if (!from || !to) continue;
     if (from.x !== to.x) {
       const bend = (to.y - from.y) * 0.3;
       points.push({ x: from.x, y: from.y + bend }, { x: to.x, y: to.y - bend });
@@ -195,7 +198,7 @@ export function ProcessRail({ className = "" }: { className?: string }) {
               labelRefs.current[i] = el;
             }}
             className="relative flex items-center whitespace-nowrap pr-4 text-[12px] leading-5"
-            style={{ height: ROW, paddingLeft: geo.nodes[i].x + LABEL_GAP, color: "rgba(29,29,31,0.4)" }}
+            style={{ height: ROW, paddingLeft: (geo.nodes[i]?.x ?? 0) + LABEL_GAP, color: "rgba(29,29,31,0.4)" }}
           >
             {item.label}
           </li>
