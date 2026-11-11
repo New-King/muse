@@ -1,15 +1,24 @@
 import { HazeCanvas } from "@/components/haze-canvas";
-import { ProcessRail } from "@/components/process-rail";
+import { RailToc } from "@/components/ui/rail-toc";
 import { LoginForm } from "@/components/login-form";
 
 const mediums = ["图像", "视频", "版式"];
+
+const RAIL_ITEMS = [
+  { id: "step-1", label: "描述需求", depth: 0 },
+  { id: "step-2", label: "拆解意图", depth: 1 },
+  { id: "step-3", label: "生成图像", depth: 1 },
+  { id: "step-4", label: "生成视频", depth: 2 },
+  { id: "step-5", label: "排版结构", depth: 2 },
+  { id: "step-6", label: "导出成稿", depth: 0 },
+];
 
 export default function Home() {
   return (
     <div className="relative min-h-dvh overflow-hidden bg-canvas">
       <HazeCanvas />
-      <div className="pointer-events-none absolute inset-y-0 left-[44px] z-0 hidden items-center opacity-[0.15] xl:flex">
-        <ProcessRail row={96} indent={40} fontSize={20} />
+      <div className="absolute left-2 top-[46%] z-0 hidden xl:block">
+        <RailToc title="创作流程" items={RAIL_ITEMS} />
       </div>
 
       <div className="relative z-10 mx-auto grid min-h-dvh w-full max-w-[1040px] gap-12 px-7 pb-24 pt-10 lg:grid-cols-[1fr_420px] lg:items-stretch lg:gap-10 lg:px-14 lg:pb-24 lg:pt-14">
