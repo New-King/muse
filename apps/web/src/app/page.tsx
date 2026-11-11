@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div className="relative min-h-dvh overflow-hidden bg-canvas">
       <HazeCanvas />
-      <div className="absolute left-[76px] top-1/2 hidden -translate-y-1/2 xl:block">
+      <div className="absolute left-[64px] top-[210px] hidden xl:block">
         <ProcessRail />
       </div>
 
