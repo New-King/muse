@@ -8,8 +8,8 @@ export default function Home() {
   return (
     <div className="relative min-h-dvh overflow-hidden bg-canvas">
       <HazeCanvas />
-      <div className="absolute left-[64px] top-[210px] hidden xl:block">
-        <ProcessRail />
+      <div className="pointer-events-none absolute inset-y-0 left-[44px] z-0 hidden items-center opacity-[0.15] xl:flex">
+        <ProcessRail row={96} indent={40} fontSize={20} />
       </div>
 
       <div className="relative z-10 mx-auto grid min-h-dvh w-full max-w-[1040px] gap-12 px-7 pb-24 pt-10 lg:grid-cols-[1fr_420px] lg:items-stretch lg:gap-10 lg:px-14 lg:pb-24 lg:pt-14">

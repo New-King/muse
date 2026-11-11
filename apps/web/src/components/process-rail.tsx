@@ -2,19 +2,25 @@
 
 import { useEffect, useMemo, useRef } from "react";
 
-const ROW = 30;
 const RAIL_X = 6;
-const INDENT = 16;
-const LABEL_GAP = 16;
+const LABEL_GAP = 18;
 
 /** 我们的创作过程：一句描述，依次落成图、片、版 */
 const ITEMS = [
   { label: "描述需求", depth: 0 },
+  { label: "拆解意图", depth: 1 },
   { label: "生成图像", depth: 1 },
-  { label: "生成视频", depth: 1 },
-  { label: "排版", depth: 2 },
+  { label: "生成视频", depth: 2 },
+  { label: "排版结构", depth: 2 },
   { label: "导出成稿", depth: 0 },
 ];
+
+type Props = {
+  className?: string;
+  row?: number;
+  indent?: number;
+  fontSize?: number;
+};
 
 type Point = { x: number; y: number };
 
@@ -35,7 +41,12 @@ function buildPath(nodes: Point[]) {
   return points.map((p, i) => `${i ? "L" : "M"}${p.x} ${p.y}`).join(" ");
 }
 
-export function ProcessRail({ className = "" }: { className?: string }) {
+export function ProcessRail({
+  className = "",
+  row = 30,
+  indent = 16,
+  fontSize = 12,
+}: Props) {
   const pathRef = useRef<SVGPathElement>(null);
   const progressRef = useRef<SVGPathElement>(null);
   const planeRef = useRef<HTMLDivElement>(null);
@@ -44,16 +55,16 @@ export function ProcessRail({ className = "" }: { className?: string }) {
 
   const geo = useMemo(() => {
     const nodes = ITEMS.map((item, i) => ({
-      x: RAIL_X + item.depth * INDENT,
-      y: i * ROW + ROW / 2,
+      x: RAIL_X + item.depth * indent,
+      y: i * row + row / 2,
     }));
     return {
       nodes,
       d: buildPath(nodes),
       width: Math.max(...nodes.map((n) => n.x)) + RAIL_X + 8,
-      height: ITEMS.length * ROW,
+      height: ITEMS.length * row,
     };
-  }, []);
+  }, [row, indent]);
 
   useEffect(() => {
     const path = pathRef.current;
@@ -130,7 +141,10 @@ export function ProcessRail({ className = "" }: { className?: string }) {
 
   return (
     <nav aria-hidden className={`w-max ${className}`}>
-      <p className="mb-3 flex items-center gap-2 text-[11px] font-medium text-ink/45">
+      <p
+        className="mb-3 flex items-center gap-2 font-medium text-ink/45"
+        style={{ fontSize: Math.max(11, fontSize - 1) }}
+      >
         <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
           <path d="M2 4h12M2 8h8M2 12h10" />
         </svg>
@@ -197,8 +211,13 @@ export function ProcessRail({ className = "" }: { className?: string }) {
             ref={(el) => {
               labelRefs.current[i] = el;
             }}
-            className="relative flex items-center whitespace-nowrap pr-4 text-[12px] leading-5"
-            style={{ height: ROW, paddingLeft: (geo.nodes[i]?.x ?? 0) + LABEL_GAP, color: "rgba(29,29,31,0.4)" }}
+            className="relative flex items-center whitespace-nowrap pr-4 leading-5"
+            style={{
+              height: row,
+              fontSize,
+              paddingLeft: (geo.nodes[i]?.x ?? 0) + LABEL_GAP,
+              color: "rgba(29,29,31,0.4)",
+            }}
           >
             {item.label}
           </li>
