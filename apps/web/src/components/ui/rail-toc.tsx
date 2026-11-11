@@ -262,28 +262,65 @@ const RailToc = ({
     }
   }, [containerRef, sync])
 
-  // autoLoop：进度由时间驱动，来回往返，避免循环接缝处跳变
+  // autoLoop：走到终点后停顿、淡出，再从起点开始（不回退）
   React.useEffect(() => {
     if (!autoLoop || !geometry) return
     const span = total.current
     if (!span) return
 
-    const CYCLE = 10000
-    const DOWN = 0.62
+    const CYCLE = 9000
+    const TRAVEL = 0.6 // 0 → 终点
+    const HOLD = 0.86 // 停在终点
+    const FADE = 0.05 // 淡出 → 归位 → 淡入
+
     let raf = 0
+    let prev = 0
     const start = performance.now()
+    const nav = listRef.current?.parentElement as HTMLElement | null
+
+    const reset = () => {
+      target.set(0)
+      if (!reduceMotion) travel.jump(0)
+    }
 
     const tick = (now: number) => {
       const phase = ((now - start) % CYCLE) / CYCLE
-      const u = phase < DOWN ? phase / DOWN : 1 - (phase - DOWN) / (1 - DOWN)
+
+      let u = 0
+      let opacity = 1
+
+      if (phase < TRAVEL) {
+        u = phase / TRAVEL
+      } else if (phase < HOLD) {
+        u = 1
+      } else if (phase < HOLD + FADE) {
+        u = 1
+        opacity = 1 - (phase - HOLD) / FADE
+      } else if (phase < 1 - FADE) {
+        u = 0
+        opacity = 0
+      } else {
+        u = 0
+        opacity = (phase - (1 - FADE)) / FADE
+      }
+
+      // 在完全透明的那一刻把进度归零，接缝看不见
+      if (prev < HOLD + FADE && phase >= HOLD + FADE) reset()
+      prev = phase
+
       const eased = u * u * (3 - 2 * u)
       target.set(eased * span)
+      if (nav) nav.style.opacity = String(opacity)
+
       raf = requestAnimationFrame(tick)
     }
 
     raf = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(raf)
-  }, [autoLoop, geometry, target])
+    return () => {
+      cancelAnimationFrame(raf)
+      if (nav) nav.style.opacity = "1"
+    }
+  }, [autoLoop, geometry, target, travel, reduceMotion])
 
   const select = (index: number) => {
     const el = document.getElementById(items[index].id)
