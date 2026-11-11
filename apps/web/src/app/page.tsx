@@ -17,7 +17,7 @@ export default function Home() {
             <span className="text-[17px] font-medium tracking-[-0.02em] text-ink">mylovart</span>
           </div>
 
-          <div className="flex flex-1 flex-col justify-center py-16 lg:py-0">
+          <div className="flex flex-1 flex-col justify-center py-16 lg:py-0 lg:pb-[166px]">
             <h1 className="max-w-[600px] text-[clamp(40px,5.6vw,84px)] font-light leading-[1.1] tracking-[-0.04em] text-ink">
               把想法，
               <br />
