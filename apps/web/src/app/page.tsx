@@ -2,8 +2,6 @@ import { HazeCanvas } from "@/components/haze-canvas";
 import { RailToc } from "@/components/ui/rail-toc";
 import { LoginForm } from "@/components/login-form";
 
-const mediums = ["图像", "视频", "版式"];
-
 const RAIL_ITEMS = [
   { id: "step-1", label: "描述需求", depth: 0 },
   { id: "step-2", label: "拆解意图", depth: 1 },
@@ -18,7 +16,7 @@ export default function Home() {
     <div className="relative min-h-dvh overflow-hidden bg-canvas">
       <HazeCanvas />
       <div className="absolute left-2 top-[46%] z-0 hidden xl:block">
-        <RailToc title="创作流程" items={RAIL_ITEMS} />
+        <RailToc title="创作流程" items={RAIL_ITEMS} autoLoop />
       </div>
 
       <div className="relative z-10 mx-auto grid min-h-dvh w-full max-w-[1040px] gap-12 px-7 pb-24 pt-10 lg:grid-cols-[1fr_420px] lg:items-stretch lg:gap-10 lg:px-14 lg:pb-24 lg:pt-14">
@@ -41,13 +39,6 @@ export default function Home() {
               图像、视频、版式，在同一张画布上完成。
             </p>
 
-            <div className="mt-14 flex items-center gap-5">
-              {mediums.map((m) => (
-                <span key={m} className="font-mono text-[9px] tracking-[0.18em] text-faint">
-                  {m}
-                </span>
-              ))}
-            </div>
           </div>
         </div>
 

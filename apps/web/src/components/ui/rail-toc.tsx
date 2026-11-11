@@ -60,6 +60,8 @@ function lengthAtY(path: SVGPathElement, total: number, y: number) {
 
 export type RailTocProps = React.ComponentProps<"nav"> & {
   items: RailTocItem[]
+  /** 不依赖滚动，用计时器驱动进度，循环往复 */
+  autoLoop?: boolean
   containerRef?: React.RefObject<HTMLElement | null>
   offset?: number
   indent?: number
@@ -69,6 +71,7 @@ export type RailTocProps = React.ComponentProps<"nav"> & {
 const RailToc = ({
   className,
   items,
+  autoLoop = false,
   containerRef,
   offset = 96,
   indent = 14,
@@ -234,6 +237,7 @@ const RailToc = ({
   }, [geometry, sync, pose, distance])
 
   React.useEffect(() => {
+    if (autoLoop) return
     const scroller = containerRef?.current ?? window
     const onIntent = () => {
       userScrolled.current = true
@@ -257,6 +261,29 @@ const RailToc = ({
       window.removeEventListener("resize", sync)
     }
   }, [containerRef, sync])
+
+  // autoLoop：进度由时间驱动，来回往返，避免循环接缝处跳变
+  React.useEffect(() => {
+    if (!autoLoop || !geometry) return
+    const span = total.current
+    if (!span) return
+
+    const CYCLE = 10000
+    const DOWN = 0.62
+    let raf = 0
+    const start = performance.now()
+
+    const tick = (now: number) => {
+      const phase = ((now - start) % CYCLE) / CYCLE
+      const u = phase < DOWN ? phase / DOWN : 1 - (phase - DOWN) / (1 - DOWN)
+      const eased = u * u * (3 - 2 * u)
+      target.set(eased * span)
+      raf = requestAnimationFrame(tick)
+    }
+
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [autoLoop, geometry, target])
 
   const select = (index: number) => {
     const el = document.getElementById(items[index].id)
