@@ -16,7 +16,7 @@ export default function Home() {
     <div className="relative min-h-dvh overflow-hidden bg-canvas">
       <HazeCanvas />
 
-      <div className="relative z-10 mx-auto grid min-h-dvh w-full max-w-[1040px] gap-0 px-7 pb-16 pt-10 lg:grid-cols-[1fr_420px] lg:items-stretch lg:gap-10 lg:px-14 lg:pb-24 lg:pt-14">
+      <div className="relative z-10 mx-auto grid min-h-dvh w-full max-w-[1040px] content-start gap-6 px-7 pb-16 pt-10 lg:grid-cols-[1fr_420px] lg:items-stretch lg:content-stretch lg:gap-10 lg:px-14 lg:pb-24 lg:pt-14">
         <div className="flex flex-col lg:h-full">
           <div className="flex items-center gap-2.5">
             <span className="grid size-[28px] place-items-center rounded-[8px] bg-ink text-[12px] font-semibold text-white">
