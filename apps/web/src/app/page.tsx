@@ -16,7 +16,7 @@ export default function Home() {
     <div className="relative min-h-dvh overflow-hidden bg-canvas">
       <HazeCanvas />
 
-      <div className="relative z-10 mx-auto grid min-h-dvh w-full max-w-[1040px] gap-4 px-7 pb-16 pt-10 lg:grid-cols-[1fr_420px] lg:items-stretch lg:gap-10 lg:px-14 lg:pb-24 lg:pt-14">
+      <div className="relative z-10 mx-auto grid min-h-dvh w-full max-w-[1040px] gap-0 px-7 pb-16 pt-10 lg:grid-cols-[1fr_420px] lg:items-stretch lg:gap-10 lg:px-14 lg:pb-24 lg:pt-14">
         <div className="flex flex-col lg:h-full">
           <div className="flex items-center gap-2.5">
             <span className="grid size-[28px] place-items-center rounded-[8px] bg-ink text-[12px] font-semibold text-white">
@@ -32,7 +32,7 @@ export default function Home() {
               做成作品。
             </h1>
 
-            <p className="mt-8 max-w-[330px] text-[13.5px] leading-[1.95] text-muted">
+            <p className="mt-4 max-w-[330px] text-[13.5px] leading-[1.95] text-muted">
               图像、视频、版式，在同一张画布上完成。
             </p>
           </div>
