@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { clearSession } from "@/lib/session";
+import { signOut } from "@/lib/auth";
 import { CanvasStage } from "./canvas-stage";
 import { ChatPanel } from "./chat-panel";
 import { ProjectRail } from "./project-rail";
@@ -82,9 +82,9 @@ export function Workspace() {
     [activeId],
   );
 
-  const handleLogout = () => {
-    clearSession();
-    router.push("/login");
+  const handleLogout = async () => {
+    await signOut();
+    router.push("/");
   };
 
   const handleCreate = () => {

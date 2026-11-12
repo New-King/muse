@@ -23,9 +23,15 @@ export type WorkspaceData = {
 const base = process.env.NEXT_PUBLIC_SERVER_BASE_URL ?? "http://127.0.0.1:3001";
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
+  const { getAccessToken } = await import("./auth");
+  const token = await getAccessToken();
   const res = await fetch(`${base}${path}`, {
     ...init,
-    headers: { "content-type": "application/json", ...init?.headers },
+    headers: {
+      "content-type": "application/json",
+      ...(token ? { authorization: `Bearer ${token}` } : {}),
+      ...init?.headers,
+    },
     cache: "no-store",
   });
   if (!res.ok) {

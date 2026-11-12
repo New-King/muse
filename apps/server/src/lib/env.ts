@@ -11,10 +11,7 @@ export const env = {
   supabaseServiceKey: required("SUPABASE_SERVICE_ROLE_KEY"),
 
   // memory: 进程内存，重启即清空；supabase: 连真实数据库
-  projectsStore: (required("PROJECTS_STORE", "memory") === "supabase" ? "supabase" : "memory") as
+  projectsStore: (required("PROJECTS_STORE", "supabase") === "supabase" ? "supabase" : "memory") as
     | "supabase"
     | "memory",
-
-  // 登录接入前的占位用户；接入 Supabase Auth 后由 token 里的 sub 取代
-  devUserId: required("DEV_USER_ID", "00000000-0000-0000-0000-000000000001"),
 };

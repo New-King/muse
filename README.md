@@ -22,9 +22,17 @@
 
 ```bash
 pnpm install
-cp apps/web/.env.local.example apps/web/.env.local   # Supabase 配置
+# 根目录与 apps/web 各需要一份 .env.local（Supabase URL / anon key / service_role key）
 pnpm dev
 ```
+
+## 登录
+
+使用 Supabase Auth（邮箱 + 密码），**不开放注册**，只有预置的管理员账号可以登录。
+
+- 前端：`@supabase/supabase-js` 完成登录，会话存在浏览器，请求带 `Authorization: Bearer <token>`
+- 后端：每个接口用 service key 调 `auth.getUser(token)` 校验，未登录返回 401
+- 数据：`projects` 存在 Postgres（RLS 按 `user_id` 隔离）；画布与对话暂存服务端内存
 
 | 进程 | 端口 | 职责 |
 |------|------|------|

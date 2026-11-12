@@ -2,27 +2,32 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { OWNER_EMAIL, setSession } from "@/lib/session";
+import { AuthError, signIn } from "@/lib/auth";
 
 export function LoginForm() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
 
-  function submit(event: React.FormEvent) {
+  async function submit(event: React.FormEvent) {
     event.preventDefault();
     if (!email.trim() || !password) {
       setError("请填写邮箱和密码");
       return;
     }
-    // 占位校验：接上 Supabase Auth 后删掉，改由服务端验证
-    if (email.trim().toLowerCase() !== OWNER_EMAIL.toLowerCase()) {
-      setError("该账号没有访问权限");
-      return;
+
+    setBusy(true);
+    setError(null);
+    try {
+      await signIn(email, password);
+      router.push("/app");
+      router.refresh();
+    } catch (err) {
+      setError(err instanceof AuthError ? err.message : "登录失败，请稍后再试");
+      setBusy(false);
     }
-    setSession({ email: email.trim() });
-    router.push("/app");
   }
 
   return (
@@ -59,9 +64,10 @@ export function LoginForm() {
 
       <button
         type="submit"
-        className="h-9 w-full rounded-lg bg-accent text-[13px] font-medium text-white transition-colors hover:bg-accent/90"
+        disabled={busy}
+        className="h-9 w-full rounded-lg bg-accent text-[13px] font-medium text-white transition-colors hover:bg-accent/90 disabled:opacity-60"
       >
-        登录
+        {busy ? "登录中…" : "登录"}
       </button>
     </form>
   );

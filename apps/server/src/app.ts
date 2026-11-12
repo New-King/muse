@@ -2,6 +2,7 @@ import cors from "@fastify/cors";
 import Fastify from "fastify";
 import { APP_NAME } from "@my-lovart/shared";
 import { env } from "./lib/env.js";
+import { UnauthorizedError } from "./lib/auth.js";
 import { registerProjectRoutes } from "./http/projects.js";
 import { registerWorkspaceRoutes } from "./http/workspace.js";
 import {
@@ -13,6 +14,14 @@ export function buildApp() {
   const app = Fastify({ logger: true });
 
   app.register(cors, { origin: env.webOrigins });
+
+  app.setErrorHandler((error, _request, reply) => {
+    if (error instanceof UnauthorizedError) {
+      return reply.code(401).send({ error: error.message });
+    }
+    app.log.error(error);
+    return reply.code(500).send({ error: "服务器错误" });
+  });
 
   app.get("/health", async () => ({
     ok: true,

@@ -2,18 +2,25 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { getSession } from "@/lib/session";
+import { getAccessToken } from "@/lib/auth";
 
 export function RequireAuth({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    if (!getSession()) {
-      router.replace("/login");
-      return;
-    }
-    setReady(true);
+    let cancelled = false;
+    getAccessToken().then((token) => {
+      if (cancelled) return;
+      if (!token) {
+        router.replace("/");
+        return;
+      }
+      setReady(true);
+    });
+    return () => {
+      cancelled = true;
+    };
   }, [router]);
 
   if (!ready) {
