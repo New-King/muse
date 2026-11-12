@@ -16,7 +16,7 @@ export default function Home() {
     <div className="relative min-h-dvh overflow-hidden bg-canvas">
       <HazeCanvas />
 
-      <div className="relative z-10 mx-auto grid min-h-dvh w-full max-w-[1040px] gap-12 px-7 pb-24 pt-10 lg:grid-cols-[1fr_420px] lg:items-stretch lg:gap-10 lg:px-14 lg:pb-24 lg:pt-14">
+      <div className="relative z-10 mx-auto grid min-h-dvh w-full max-w-[1040px] gap-8 px-7 pb-16 pt-10 lg:grid-cols-[1fr_420px] lg:items-stretch lg:gap-10 lg:px-14 lg:pb-24 lg:pt-14">
         <div className="flex flex-col lg:h-full">
           <div className="flex items-center gap-2.5">
             <span className="grid size-[28px] place-items-center rounded-[8px] bg-ink text-[12px] font-semibold text-white">
@@ -25,7 +25,7 @@ export default function Home() {
             <span className="text-[17px] font-medium tracking-[-0.02em] text-ink">mylovart</span>
           </div>
 
-          <div className="flex flex-col py-16 lg:pt-[calc((100dvh-595px)/2-28px)] lg:pb-0">
+          <div className="flex flex-col pb-4 pt-16 lg:pt-[calc((100dvh-595px)/2-28px)] lg:pb-0">
             <h1 className="max-w-[600px] text-[clamp(40px,5.6vw,84px)] font-light leading-[1.1] tracking-[-0.04em] text-ink">
               把想法，
               <br />
