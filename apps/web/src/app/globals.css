@@ -8,8 +8,6 @@
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-paper: #f5f5f7;
-  --color-line-warm: #e4e4e7;
   --color-canvas: #f5f5f7;
   --color-surface: #ffffff;
   --color-ink: #1d1d1f;
@@ -23,8 +21,6 @@
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, "PingFang SC", "Hiragino Sans GB",
     "Microsoft YaHei", sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", monospace;
-  --font-serif: "Songti SC", "Noto Serif SC", "Source Han Serif SC", "Source Han Serif CN",
-    "STSong", "SimSun", Georgia, serif;
 }
 
 @layer base {
@@ -73,6 +69,7 @@
   --island-bg-color: #ffffff;
 }
 
+/* 聊天里的 Markdown */
 @layer components {
   .prose-muse > * + * {
     margin-top: 0.7em;
@@ -139,95 +136,4 @@
     color: var(--color-accent);
     text-decoration: underline;
   }
-}
-
-/* 首页背景：极细的流动线，克制到几乎察觉不到 */
-@keyframes art-flow {
-  to {
-    stroke-dashoffset: -400;
-  }
-}
-
-.art-line {
-  stroke-dasharray: 3 17;
-  animation: art-flow 22s linear infinite;
-}
-
-.art-line-slow {
-  animation-duration: 34s;
-  animation-direction: reverse;
-}
-
-.art-line-fast {
-  animation-duration: 16s;
-}
-
-@keyframes art-drift {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-    opacity: 0.5;
-  }
-  50% {
-    transform: translate3d(0, -12px, 0);
-    opacity: 1;
-  }
-}
-
-.art-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 9999px;
-  background: #2f5d50;
-  opacity: 0.5;
-  animation: art-drift 9s ease-in-out infinite;
-}
-
-.art-dot-slow {
-  animation-duration: 13s;
-  animation-delay: -3s;
-}
-
-.art-dot-fast {
-  animation-duration: 7s;
-  animation-delay: -5s;
-}
-
-@keyframes art-float {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(0, -8px, 0);
-  }
-}
-
-.art-float {
-  animation: art-float 7s ease-in-out infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .art-line,
-  .art-dot,
-  .art-float {
-    animation: none;
-  }
-}
-
-.poster-shadow {
-  box-shadow:
-    0 1px 2px rgba(35, 29, 23, 0.08),
-    0 18px 40px -12px rgba(35, 29, 23, 0.22),
-    0 40px 90px -30px rgba(35, 29, 23, 0.18);
-}
-
-.canvas-dots {
-  background-image: radial-gradient(circle, #dcd8cd 1px, transparent 1px);
-  background-size: 20px 20px;
-}
-
-@utility grid-dots {
-  background-image: radial-gradient(circle, #dddcd6 1px, transparent 1px);
-  background-size: 24px 24px;
 }
