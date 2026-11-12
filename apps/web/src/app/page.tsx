@@ -25,7 +25,7 @@ export default function Home() {
             <span className="text-[17px] font-medium tracking-[-0.02em] text-ink">mylovart</span>
           </div>
 
-          <div className="flex flex-col py-16 lg:pt-[124px] lg:pb-0">
+          <div className="flex flex-col py-16 lg:pt-[calc((100dvh-595px)/2-28px)] lg:pb-0">
             <h1 className="max-w-[600px] text-[clamp(40px,5.6vw,84px)] font-light leading-[1.1] tracking-[-0.04em] text-ink">
               把想法，
               <br />
@@ -37,7 +37,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="relative z-10 mt-12 hidden xl:block">
+          <div className="relative z-10 mt-12 hidden lg:block">
             <RailToc title="创作流程" items={RAIL_ITEMS} autoLoop />
           </div>
         </div>
