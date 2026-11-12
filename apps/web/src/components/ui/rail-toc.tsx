@@ -106,6 +106,7 @@ const RailToc = ({
   const heading = useMotionValue(180)
   const turn = useSpring(heading, TURN_SPRING)
   const filled = useMotionValue(0)
+  const planeOpacity = useMotionValue(1)
 
   const pose = React.useCallback(
     (l: number) => {
@@ -262,21 +263,20 @@ const RailToc = ({
     }
   }, [containerRef, sync])
 
-  // autoLoop：走到终点后停顿、淡出，再从起点开始（不回退）
+  // autoLoop：轨道常驻，只有指针走到终点后淡出、回到起点淡入，继续下一轮
   React.useEffect(() => {
     if (!autoLoop || !geometry) return
     const span = total.current
     if (!span) return
 
     const CYCLE = 9000
-    const TRAVEL = 0.6 // 0 → 终点
-    const HOLD = 0.86 // 停在终点
-    const FADE = 0.05 // 淡出 → 归位 → 淡入
+    const TRAVEL = 0.6 // 走到终点
+    const HOLD = 0.88 // 停在终点
+    const FADE = 0.04 // 指针淡出 / 淡入
 
     let raf = 0
     let prev = 0
     const start = performance.now()
-    const nav = listRef.current?.parentElement as HTMLElement | null
 
     const reset = () => {
       target.set(0)
@@ -304,13 +304,13 @@ const RailToc = ({
         opacity = (phase - (1 - FADE)) / FADE
       }
 
-      // 在完全透明的那一刻把进度归零，接缝看不见
+      // 指针完全看不见的那一刻归位
       if (prev < HOLD + FADE && phase >= HOLD + FADE) reset()
       prev = phase
 
       const eased = u * u * (3 - 2 * u)
       target.set(eased * span)
-      if (nav) nav.style.opacity = String(opacity)
+      planeOpacity.set(opacity)
 
       raf = requestAnimationFrame(tick)
     }
@@ -318,9 +318,9 @@ const RailToc = ({
     raf = requestAnimationFrame(tick)
     return () => {
       cancelAnimationFrame(raf)
-      if (nav) nav.style.opacity = "1"
+      planeOpacity.set(1)
     }
-  }, [autoLoop, geometry, target, travel, reduceMotion])
+  }, [autoLoop, geometry, target, travel, reduceMotion, planeOpacity])
 
   const select = (index: number) => {
     const el = document.getElementById(items[index].id)
@@ -482,7 +482,7 @@ const RailToc = ({
           <motion.div
             data-slot="rail-toc-plane"
             className="pointer-events-none absolute left-0 top-0 -ml-2 -mt-2 h-4 w-4 text-foreground [filter:drop-shadow(0_0_2px_rgb(0_0_0/0.35))]"
-            style={{ x, y, rotate: reduceMotion ? heading : turn }}
+            style={{ x, y, rotate: reduceMotion ? heading : turn, opacity: planeOpacity }}
             aria-hidden
           >
             <svg viewBox="0 0 24 24" className="h-4 w-4 overflow-visible">
